@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Darsliklar · AT-Servis group</title>
+  <meta name="description" content="Talabalar uchun darsliklar: qoraqalpoq, o'zbek, ingliz va rus tillarida." />
+  <link rel="icon" href="logo.jpg" />
+  <style>
+    :root {
+      --blue-900: #0d2a6b; --blue-700: #1546b8; --blue-600: #1e5ee6; --blue-500: #2f7bff;
+      --sky: #38bdf8; --bg: #f2f6ff; --surface: #ffffff; --ink: #14213d; --muted: #5b6b8c;
+      --line: #dce8ff; --danger: #d32f2f; --shadow: 0 6px 20px rgba(13, 42, 107, .08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0a1530; --surface: #13224a; --ink: #f2f6ff; --muted: #7fb0ff; --line: #1f3366;
+              --shadow: 0 6px 20px rgba(0, 0, 0, .35); }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg); color: var(--ink); min-height: 100vh;
+    }
+    a { color: inherit; }
+
+    /* Sarlavha */
+    header {
+      background: linear-gradient(120deg, var(--blue-900), var(--blue-700) 55%, var(--blue-500));
+      color: #fff; border-radius: 0 0 28px 28px; padding: 22px 16px 26px;
+    }
+    .head-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 14px; }
+    .logo { width: 52px; height: 52px; border-radius: 16px; object-fit: cover; flex: none; background: #fff; }
+    .back {
+      width: 44px; height: 44px; border-radius: 50%; border: 0; flex: none; cursor: pointer;
+      background: rgba(255, 255, 255, .18); color: #fff; font-size: 22px;
+    }
+    .back:hover { background: rgba(255, 255, 255, .28); }
+    .titles { min-width: 0; }
+    .titles h1 { margin: 0; font-size: 26px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .titles p { margin: 2px 0 0; opacity: .82; font-size: 14px; }
+    .brand { margin-left: auto; font-weight: 600; font-size: 14px; opacity: .9; white-space: nowrap; }
+    @media (max-width: 560px) { .brand { display: none; } .titles h1 { font-size: 22px; } }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 20px 16px 48px; }
+
+    .search {
+      width: 100%; padding: 13px 16px; border-radius: 14px; border: 1px solid var(--line);
+      background: var(--surface); color: var(--ink); font-size: 16px; margin-bottom: 18px;
+    }
+    .search:focus { outline: 2px solid var(--blue-500); border-color: transparent; }
+
+    /* Fanlar */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+    .card {
+      background: var(--surface); border-radius: 22px; box-shadow: var(--shadow); text-decoration: none;
+      padding: 22px 14px; display: flex; flex-direction: column; align-items: center; gap: 12px;
+      text-align: center; transition: transform .12s ease, box-shadow .12s ease; border: 1px solid transparent;
+    }
+    .card:hover { transform: translateY(-3px); border-color: var(--line); }
+    .emoji {
+      width: 68px; height: 68px; border-radius: 50%; display: grid; place-items: center; font-size: 32px;
+      background: linear-gradient(135deg, var(--blue-500), var(--sky));
+    }
+    .card b { font-size: 16px; }
+
+    /* Tillar va fayllar */
+    .list { display: flex; flex-direction: column; gap: 12px; }
+    .row {
+      background: var(--surface); border-radius: 18px; box-shadow: var(--shadow); padding: 16px;
+      display: flex; align-items: center; gap: 16px; text-decoration: none; border: 1px solid transparent;
+    }
+    a.row:hover { border-color: var(--line); }
+    .badge {
+      width: 56px; height: 56px; border-radius: 16px; flex: none; display: grid; place-items: center;
+      color: #fff; font-weight: 700; background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+    }
+    .badge.small { width: 48px; height: 48px; border-radius: 12px; font-size: 12px; }
+    .info { flex: 1; min-width: 0; }
+    .info b { display: block; font-size: 17px; overflow-wrap: anywhere; }
+    .info span { color: var(--muted); font-size: 14px; }
+    .chev { color: var(--blue-500); font-size: 28px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .btn {
+      border: 0; border-radius: 12px; padding: 10px 14px; font-size: 14px; font-weight: 600; cursor: pointer;
+      text-decoration: none; white-space: nowrap; background: var(--blue-600); color: #fff;
+    }
+    .btn.ghost { background: transparent; color: var(--blue-500); border: 1px solid var(--line); }
+    .btn:hover { filter: brightness(1.08); }
+    @media (max-width: 560px) {
+      .row.file { flex-wrap: wrap; }
+      .row.file .actions { width: 100%; justify-content: stretch; }
+      .row.file .actions .btn { flex: 1; text-align: center; }
+    }
+
+    /* Holatlar */
+    .state { text-align: center; padding: 60px 16px; color: var(--muted); }
+    .state .big { font-size: 54px; }
+    .state h2 { color: var(--ink); margin: 10px 0 6px; font-size: 20px; }
+    .spinner {
+      width: 40px; height: 40px; margin: 70px auto; border-radius: 50%;
+      border: 4px solid var(--line); border-top-color: var(--blue-500); animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    footer { text-align: center; color: var(--muted); font-size: 13px; padding: 0 16px 28px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="head-inner">
+      <button class="back" id="back" hidden aria-label="Orqaga">←</button>
+      <img class="logo" id="logo" src="logo.jpg" alt="AT-Servis group" />
+      <div class="titles">
+        <h1 id="title">Darsliklar</h1>
+        <p id="subtitle">Fanni tanlang</p>
+      </div>
+      <div class="brand">AT-Servis group</div>
+    </div>
+  </header>
+
+  <main id="app"><div class="spinner"></div></main>
+  <footer>© AT-Servis group · Talabalar uchun darsliklar</footer>
+
+  <script>
+    // Android ilovasi bilan bir xil Supabase loyihasi (anon kalit ochiq; o'qishga ruxsat, yozishni RLS taqiqlaydi)
+    const SUPABASE_URL = "https://rvwkbrikaqnfnomtucmr.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ2d2ticmlrYXFuZm5vbXR1Y21yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTU2MzQyMTksImV4cCI6MjExMTIxMDIxOX0.ERNJoEtyVkvtmEMTfJeeh326lHMjsdGUoyxxkBzpeWw";
+
+    const LANGS = [
+      { code: "kaa", title: "Qaraqalpaqsha", badge: "QQ" },
+      { code: "uz", title: "O'zbekcha", badge: "UZ" },
+      { code: "en", title: "English", badge: "EN" },
+      { code: "ru", title: "Русский", badge: "RU" },
+    ];
+
+    const app = document.getElementById("app");
+    const back = document.getElementById("back");
+    const logo = document.getElementById("logo");
+    let subjectsCache = null;
+    const filesCache = {};
+
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+    async function api(path) {
+      const res = await fetch(SUPABASE_URL + path, { headers: { apikey: SUPABASE_KEY } });
+      if (!res.ok) throw new Error("Server xatosi (" + res.status + ")");
+      return res.json();
+    }
+    const getSubjects = async () => subjectsCache ??= await api("/rest/v1/subjects?select=id,name,emoji&order=created_at");
+    const getFiles = async (id) => filesCache[id] ??= await api(
+      "/rest/v1/files?subject_id=eq." + encodeURIComponent(id) + "&select=id,lang,name,path,size,created_at&order=created_at.desc");
+
+    function setHeader(title, subtitle, canGoBack) {
+      document.getElementById("title").textContent = title;
+      document.getElementById("subtitle").textContent = subtitle;
+      back.hidden = !canGoBack;
+      logo.hidden = canGoBack;
+      document.title = title === "Darsliklar" ? "Darsliklar · AT-Servis group" : title + " · Darsliklar";
+    }
+
+    const spinner = () => { app.innerHTML = '<div class="spinner"></div>'; };
+    function message(icon, title, text, retry) {
+      app.innerHTML = `<div class="state"><div class="big">${icon}</div><h2>${esc(title)}</h2><p>${esc(text)}</p>
+        ${retry ? '<button class="btn" id="retry">Qayta urinish</button>' : ""}</div>`;
+      if (retry) document.getElementById("retry").onclick = () => { subjectsCache = null; route(); };
+    }
+
+    function fileUrl(f) { return SUPABASE_URL + "/storage/v1/object/public/books/" + f.path; }
+    function ext(name) { return (name.split(".").pop() || "").toLowerCase(); }
+    function badge(e) {
+      if (["doc", "docx", "rtf", "odt"].includes(e)) return ["DOC", "#2B579A"];
+      if (["ppt", "pptx", "odp"].includes(e)) return ["PPT", "#D24726"];
+      if (["xls", "xlsx", "ods", "csv"].includes(e)) return ["XLS", "#217346"];
+      if (e === "pdf") return ["PDF", "#E53935"];
+      if (["jpg", "jpeg", "png", "webp", "gif"].includes(e)) return ["IMG", "#8E24AA"];
+      if (["mp4", "mkv", "mov", "webm"].includes(e)) return ["VID", "#00897B"];
+      if (["mp3", "wav", "m4a"].includes(e)) return ["AUD", "#F57C00"];
+      return [(e.slice(0, 4) || "FILE").toUpperCase(), "var(--blue-700)"];
+    }
+    // Word/PowerPoint/Excel fayllarni brauzerda ko'rish uchun Microsoft Office Online
+    function viewUrl(f) {
+      const e = ext(f.name);
+      if (["doc", "docx", "ppt", "pptx", "xls", "xlsx"].includes(e))
+        return "https://view.officeapps.live.com/op/view.aspx?src=" + encodeURIComponent(fileUrl(f));
+      return fileUrl(f);
+    }
+    const size = (b) => b >= 1048576 ? (b / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(b / 1024)) + " KB";
+    const date = (iso) => { const [y, m, d] = iso.slice(0, 10).split("-"); return `${d}.${m}.${y}`; };
+
+    // ------------------------------------------------ 1. Fanlar
+    async function showSubjects() {
+      setHeader("Darsliklar", "Fanni tanlang", false);
+      const list = await getSubjects();
+      if (!list.length) return message("📚", "Hali fan yo'q", "Admin hali fan qo'shmagan.");
+      app.innerHTML = `<input class="search" id="q" type="search" placeholder="🔍  Fan qidirish…" />
+        <div class="grid" id="grid"></div>`;
+      const grid = document.getElementById("grid");
+      const draw = (q) => {
+        const items = list.filter((s) => s.name.toLowerCase().includes(q.toLowerCase()));
+        grid.innerHTML = items.length ? items.map((s) => `
+          <a class="card" href="#/s/${encodeURIComponent(s.id)}">
+            <div class="emoji">${esc(s.emoji || "📘")}</div><b>${esc(s.name)}</b>
+          </a>`).join("") : `<p class="state">Hech narsa topilmadi</p>`;
+      };
+      document.getElementById("q").oninput = (e) => draw(e.target.value);
+      draw("");
+    }
+
+    // ------------------------------------------------ 2. Tillar
+    async function showLanguages(id) {
+      const subject = (await getSubjects()).find((s) => s.id === id);
+      if (!subject) return message("🤔", "Fan topilmadi", "Bu fan o'chirilgan bo'lishi mumkin.");
+      setHeader(subject.name, "Tilni tanlang", true);
+      const files = await getFiles(id);
+      app.innerHTML = `<div class="list">${LANGS.map((l) => {
+        const n = files.filter((f) => f.lang === l.code).length;
+        return `<a class="row" href="#/s/${encodeURIComponent(id)}/${l.code}">
+          <div class="badge">${l.badge}</div>
+          <div class="info"><b>${l.title}</b><span>${n ? n + " ta fayl" : "Fayl yo'q"}</span></div>
+          <div class="chev">›</div></a>`;
+      }).join("")}</div>`;
+    }
+
+    // ------------------------------------------------ 3. Fayllar
+    async function showFiles(id, code) {
+      const subject = (await getSubjects()).find((s) => s.id === id);
+      const lang = LANGS.find((l) => l.code === code);
+      if (!subject || !lang) return message("🤔", "Topilmadi", "Bu bo'lim mavjud emas.");
+      setHeader(subject.name + " · " + lang.badge, lang.title, true);
+      const files = (await getFiles(id)).filter((f) => f.lang === code);
+      if (!files.length) return message("📂", "Hali fayl yo'q", "Bu bo'limga hali fayl qo'shilmagan.");
+      app.innerHTML = `<div class="list">${files.map((f) => {
+        const [label, color] = badge(ext(f.name));
+        const dl = fileUrl(f) + "?download=" + encodeURIComponent(f.name);
+        return `<div class="row file">
+          <div class="badge small" style="background:${color}">${label}</div>
+          <div class="info"><b>${esc(f.name)}</b><span>${size(f.size)} · ${date(f.created_at)}</span></div>
+          <div class="actions">
+            <a class="btn" href="${esc(viewUrl(f))}" target="_blank" rel="noopener">👁 Ko'rish</a>
+            <a class="btn ghost" href="${esc(dl)}">⬇ Yuklab olish</a>
+          </div></div>`;
+      }).join("")}</div>`;
+    }
+
+    // ------------------------------------------------ Yo'naltirish (#/, #/s/ID, #/s/ID/til)
+    async function route() {
+      const parts = location.hash.replace(/^#\/?/, "").split("/").filter(Boolean).map(decodeURIComponent);
+      spinner();
+      try {
+        if (parts[0] === "s" && parts[2]) await showFiles(parts[1], parts[2]);
+        else if (parts[0] === "s" && parts[1]) await showLanguages(parts[1]);
+        else await showSubjects();
+      } catch (e) {
+        message("📡", "Ulanib bo'lmadi", "Internet aloqasini tekshiring.", true);
+      }
+      window.scrollTo(0, 0);
+    }
+
+    back.onclick = () => {
+      const parts = location.hash.replace(/^#\/?/, "").split("/").filter(Boolean);
+      location.hash = parts.length >= 3 ? `#/s/${parts[1]}` : "#/";
+    };
+    window.addEventListener("hashchange", route);
+    route();
+  </script>
+</body>
+</html>
